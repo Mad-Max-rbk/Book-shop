@@ -1,24 +1,19 @@
 <div class="panel panel-default" ng-init="showBook()">
-  <div class="panel-heading">
+  <div class="panel-heading" style="text-align: center;">
     <h3 class="panel-title">Latest Books</h3>
   </div>
-    <div class="panel-body">
-      <div class="row">
-      <div ng-repeat="books in book">
-
-        <div class="col-md-6">
-         <div class="col-md-6">
-        <img class="thumbnail" src="{{books.image_url}}" style="width: 150px;height: 150px">
+    
+      <div class="row" style="background: whitesmoke;">
+     
+      
           <!-- <a class="btn btn-primary" href="#/books/details/{{books._id}}">View Details</a> -->
-        </div>
-        <div class="col-md-6">
-          <h4>{{books.title}}</h4>
-          <p>{{books.description}}</p>
-          <p>{{books.author}}</p>
-          <p>{{books.publisher}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+        
+        <div class="col-md-6" ng-repeat="books in book" style="text-align: center">
+          <img class="img-rounded"  src="{{books.image_url}}" style="width: 50%;height: 150px">
+          <hr size="30">
+          <p><span class="label label-danger">{{books.title}}</span></p>
+          <p><span class="label label-primary">{{books.description}}</span></p>
+          <p><span class="label label-warning">{{books.author}}</span></p>
+          <p><span class="label label-success">{{books.publisher}}</span></p>
+       </div>
+       </div>
