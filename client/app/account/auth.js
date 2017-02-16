@@ -11,12 +11,20 @@ angular.module('book.auth', [])
     var userFlag = $scope.user.username;
     if(userFlag && passFlag){
       Auth.signin($scope.user)
-      .then(function (token) {
-        console.log(token)
-        $window.localStorage.setItem('com.book', token);
+      .then(function (data) {
+        console.log(data)
+        $window.localStorage.setItem('com.book', data.token);
         $window.localStorage.setItem('user.book', $scope.user.username);
-        // if(data.userType === 'admin'){}
-        $location.path('/');
+        
+        if(data.user.type){
+          $window.localStorage.setItem('user.type', data.user.type);  
+        }
+
+         if(data.user.type === 'admin'){
+             $location.path('/books/add');
+         }else {
+              $location.path('/');
+         }
       })
       .catch(function (error) {
         console.log(error);
@@ -60,41 +68,6 @@ angular.module('book.auth', [])
 $scope.signout = function(){
   Auth.signout();
 }
-// }}
-// $scope.contactus = function ($scope, $http){
-//   $scope.success = false;
-//   $scope.error = false;
-//   $scope.send = function () {
-
-//   var htmlBody = '<div>Name: ' + $scope.user.name + '</div>' +
-//                  '<div>Email: ' + $scope.user.email + '</div>' +
-//                  '<div>Message: ' + $scope.user.body + '</div>' +
-//                  '<div>Date: ' + (new Date()).toString() + '</div>';
-  
-//     $http({
-//       url: 'http://localhost:3000/#/contactus.html',
-//       method: 'POST',
-//       data: {
-//         'From': '',
-//         'To': 'eng.m.enjari@gmail.com',
-//         'HtmlBody': htmlBody,
-//         'Subject': 'New Contact Form Submission'
-//       },
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//         'X-Postmark-Server-Token': '8569dcd45-6a1a-4e7b-ae75-ea37629de4'
-//       }
-//     }).
-//     success(function (data) {
-//       $scope.success = true;
-//       $scope.user = {};
-//     }).
-//     error(function (data) {
-//       $scope.error = true;
-//     });
-  });
 
 
-
-
+});

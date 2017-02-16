@@ -36,7 +36,7 @@ angular.module('book.services', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };          
 
@@ -54,6 +54,7 @@ angular.module('book.services', [])
   var signout = function () {
     $window.localStorage.removeItem('com.book');
     $window.localStorage.removeItem('user.book');
+    $window.localStorage.removeItem('user.type');
     $location.path('/signin');
   };
 

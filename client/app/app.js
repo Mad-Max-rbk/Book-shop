@@ -23,7 +23,7 @@ angular.module('books',
       templateUrl: 'app/main/main.html',
       controller: 'MainController'
     })
-  .when('/add',{
+  .when('/books/add',{
     templateUrl: 'app/account/add_book.html',
     controller:'BookController'
   })
